@@ -1,0 +1,86 @@
+.main-account-page {
+  margin-top: 10px;
+  width: 100%;
+}
+.top-account {
+  border-bottom: 1px rgba(246, 196, 45, 1) solid;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.back-link {
+  background-color: rgba(246, 196, 45, 1);
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 70px;
+  text-align: center;
+  color: white;
+  transition: 0.5s;
+}
+
+.back-link:hover {
+  scale: 1.1;
+}
+
+.main-account {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  padding-top: 10px;
+}
+
+.main-left {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  border-right: 1px black solid;
+  padding-right: 10px;
+}
+
+.drop {
+  background-color: transparent;
+  color: black;
+  border: none;
+  border-radius: 0;
+  border-left: rgba(246, 196, 45, 1) 2px solid;
+  margin-bottom: 20px;
+}
+
+.mid {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  border-bottom: 1px black dotted;
+  margin-bottom: 20px;
+}
+
+.right {
+  width: 30%;
+}
+
+.right-in {
+  border: 1px black solid;
+  padding: 5px;
+}
+
+@media (max-width: 835px) {
+  .main-account {
+    flex-direction: column;
+    height: 800px;
+  }
+  .mid {
+    width: 270px;
+    margin-left: 5px;
+  }
+  .right {
+    width: 100%;
+    height: 100%;
+  }
+}

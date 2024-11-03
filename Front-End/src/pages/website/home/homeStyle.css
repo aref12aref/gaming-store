@@ -1,0 +1,269 @@
+.main-home {
+  width: 100%;
+  padding: 0;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.carousel-section {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.first-carousel {
+  height: 500px;
+  width: 70%;
+}
+.carousel-section-imgs {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.advantages-section {
+  margin-top: 20px;
+  background-color: rgba(47, 47, 47, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+}
+.advantage-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+  gap: 10px;
+  padding: 10px 0;
+}
+.advantage-icon {
+  color: rgba(246, 196, 45, 1);
+  font-size: 10px;
+  padding: 10px;
+  width: 40px;
+  height: 28px;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+.advantage-text {
+  display: flex;
+  flex-direction: column;
+}
+.advantage-title {
+  color: rgba(246, 196, 45, 1);
+  font-size: 18px;
+}
+.advantage-p {
+  color: white;
+  font-size: 14px;
+}
+
+.popular-section {
+  width: 50%;
+  height: 200px;
+  margin: 20px auto 0 auto;
+  text-align: center;
+  border: 1px solid black;
+  box-shadow: 0 0 10px 2px gray;
+}
+
+.categories-button {
+  font-weight: bold;
+  font-size: 24px;
+  margin: 10px 0;
+  border: 5px solid rgba(246, 196, 45, 1);
+}
+
+.popular-section-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin: 5px auto 0 auto;
+}
+
+.Externals-link,
+.Internals-link,
+.Desks-link {
+  font-size: 20px;
+  text-decoration: none;
+  color: rgba(246, 196, 45, 1);
+  width: 25px;
+  height: 25px;
+  width: 90px;
+  height: 40px;
+  border: 2px solid rgba(246, 196, 45, 1);
+  border-radius: 10px;
+  transition: 0.5s;
+  display: none;
+}
+
+.Externals-link:hover,
+.Internals-link:hover,
+.Desks-link:hover {
+  background-color: rgba(246, 196, 45, 1);
+  color: black;
+  scale: 1.1;
+}
+
+.last-news {
+  width: 80%;
+  margin: 30px auto 0 auto;
+}
+
+.lastnews-subtitle {
+  border-bottom: rgba(246, 196, 45, 1) 3px solid;
+  width: 10%;
+  font-size: 30px;
+}
+
+.offer-carousel-card {
+  height: 400px;
+  width: 50%;
+  margin: 20px auto 0 auto;
+  border: 3px solid black;
+}
+
+.lastnews-blogs {
+  margin: 30px auto 0 auto;
+  width: 100%;
+  height: 550px;
+}
+
+.blogCards {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 20px auto 0 auto;
+  height: 500px;
+}
+
+.blog-box {
+  height: 500px;
+  width: 18rem;
+}
+.blog-box:hover {
+  box-shadow: 0 0 20px 1px rgb(159, 159, 159);
+}
+.blog-img {
+  height: 60%;
+}
+
+.arr-button {
+  position: sticky;
+  z-index: 6;
+  background-color: rgba(246, 196, 45, 1);
+  color: white;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  font-size: 30px;
+}
+
+@media (max-width: 835px) {
+  .first-carousel {
+    height: 200px;
+    width: 250px;
+  }
+  .first-carousel-img {
+    width: 200px;
+    height: 300px;
+  }
+
+  .carousel-section-img {
+    width: 198px;
+  }
+
+  .carousel-section {
+    height: 300px;
+  }
+
+  .advantages-section {
+    padding: 0;
+  }
+  .advantage-item {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .advantage-icon {
+    width: 20px;
+    height: 25px;
+  }
+
+  .popular-section {
+    width: 90%;
+  }
+
+  .last-news {
+    width: 100%;
+  }
+
+  .offer-carousel-card {
+    width: 90%;
+  }
+
+  .lastnews-blogs {
+    width: 100%;
+    height: 1430px;
+  }
+
+  .blog-box {
+    margin: 0 auto;
+  }
+
+  .blogCards {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 415px) {
+  .carousel-section {
+    gap: 10px;
+  }
+  .first-carousel {
+    height: 240px;
+    width: 170px;
+  }
+  .first-carousel-img {
+    width: 170px;
+    height: 240px;
+  }
+
+  .carousel-section-img {
+    width: 152px;
+  }
+
+  .carousel-section {
+    height: 240px;
+  }
+
+  .advantages-section {
+    padding: 0 10px;
+    align-items: flex-start;
+    height: 210px;
+  }
+  .advantage-title {
+    font-size: 14px;
+  }
+  .advantage-p {
+    font-size: 10px;
+  }
+
+  .popular-section {
+    width: 90%;
+  }
+  .popular-section-links {
+    width: 100%;
+    padding: 0 5px;
+  }
+}
