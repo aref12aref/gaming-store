@@ -12,3 +12,6 @@ export const pro_URL = "products";
 
 // blogs
 export const blogs_URL = "blogs";
+
+//bot chat
+export const chatbot_URL = "chatbot";

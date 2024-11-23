@@ -15,6 +15,7 @@ import axios from "axios";
 import stringCutter from "../../../helpers/stringCutter";
 import SkeletonShow from "../../../components/SkeletonShow";
 import { BASE_URL, blogs_URL } from "../../../AxiosAPIs";
+import ChatBot from "../../../components/ChatBot";
 
 export default function Home() {
     const [blogsData, setBlogsData] = useState([]);
@@ -161,6 +162,7 @@ export default function Home() {
             <TopBar />
 
             <main className="main-home">
+                <ChatBot />
                 {showBlog ? (
                     <Blog data={blogDetails} />
                 ) : (

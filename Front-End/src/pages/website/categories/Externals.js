@@ -57,19 +57,22 @@ export default function Externals() {
                     .patch(
                         `${BASE_URL}/${users_URL}/${currentUser._id}`,
                         {
-                            headers: {
-                                Authorization: `Bearer ${currentUser.token}`,
-                                refreshToken: refreshToken,
+                            cart: {
+                                price: product.price,
+                                products: product._id,
                             },
                         },
                         {
-                            cart: {
-                                price: product.price,
-                                products: product,
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                                refreshToken: refreshToken,
                             },
                         }
                     )
                     .then((data) => {
+                        let newUser = currentUser;
+                        newUser.cart.products.push(product._id);
+                        cookie.set("user", newUser);
                         const newToken = data.data.newAccessToken;
                         if (newToken !== null) {
                             cookie.set("Bearer", newToken);

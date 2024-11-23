@@ -52,19 +52,22 @@ export default function Internals() {
                     .patch(
                         `${BASE_URL}/${users_URL}/${currentUser._id}`,
                         {
-                            headers: {
-                                Authorization: `Bearer ${currentUser.token}`,
-                                refreshToken: refreshToken,
+                            cart: {
+                                price: product.price,
+                                products: product._id,
                             },
                         },
                         {
-                            cart: {
-                                price: product.price,
-                                products: product,
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                                refreshToken: refreshToken,
                             },
                         }
                     )
                     .then((data) => {
+                        let newUser = currentUser;
+                        newUser.cart.products.push(product._id);
+                        cookie.set("user", newUser);
                         const newToken = data.data.newAccessToken;
                         if (newToken !== null) {
                             cookie.set("Bearer", newToken);
@@ -95,9 +98,13 @@ export default function Internals() {
         let y = window.scrollY;
         if (y > 100) {
             setR((prev) => !prev);
-            arr.current.style.display = "block";
+            if (arr.current) {
+                arr.current.style.display = "block";
+            }
         } else {
-            arr.current.style.display = "none";
+            if (arr.current) {
+                arr.current.style.display = "none";
+            }
         }
     };
 

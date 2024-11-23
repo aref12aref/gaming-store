@@ -56,8 +56,10 @@ const register = asyncWrapper(async (req, res) => {
 
     const userCart = new Cart({
         price: 0,
-        products: null,
+        products: [],
     });
+
+    await userCart.save();
 
     newUser.cart = userCart;
 

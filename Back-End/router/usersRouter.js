@@ -77,6 +77,14 @@ router
     );
 
 router
+    .route("/cart/:id")
+    .patch(verifyToken, verifyRefreshToken, userControlers.deleteCartProduct);
+
+router
+    .route("/create-payment-intent")
+    .post(verifyToken, verifyRefreshToken, userControlers.makePayment);
+
+router
     .route("/register")
     .post(upload.single("avatar"), AuthControlers.register);
 

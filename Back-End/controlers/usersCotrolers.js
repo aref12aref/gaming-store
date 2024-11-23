@@ -1,5 +1,6 @@
 //modules
 const bcrypt = require("bcryptjs");
+const stripe = require("stripe")(process.env.stripe_secret);
 //models
 const User = require("../models/usersModel");
 const Cart = require("../models/cartModel");
@@ -45,12 +46,16 @@ const oneUser = asyncWrapper(async (req, res) => {
 
     const user = await User.findById(userID, { __v: false }).populate("cart");
 
+    const cart = await Cart.findById(user.cart).populate("products");
+
     let newToken = null;
     if (req.currentUser.newAccessToken) {
         newToken = req.currentUser.newAccessToken;
     }
 
-    res.status(200).json(httpResponse.goodResponse(200, user, "", newToken));
+    res.status(200).json(
+        httpResponse.goodResponse(200, { user, cart }, "", newToken)
+    );
 });
 
 //create user
@@ -205,12 +210,12 @@ const editUser = asyncWrapper(async (req, res) => {
 
         const oldUserCartID = oldUser.cart;
 
-        let oldUserCart = await Cart.findById(oldUserCartID);
+        let oldUserCart = await Cart.findById(oldUserCartID).populate(
+            "products"
+        );
 
-        if (newUserCart.products.length > 0) {
-            oldUserCart.price += newUserCart.price;
-            oldUserCart.products.push(newUserCart.products);
-        }
+        oldUserCart.price += newUserCart.price;
+        oldUserCart.products.push(newUserCart.products);
 
         await Cart.findByIdAndUpdate(oldUserCartID, {
             $set: {
@@ -240,10 +245,82 @@ const editUser = asyncWrapper(async (req, res) => {
     );
 });
 
+//delete product from cart
+const deleteCartProduct = asyncWrapper(async (req, res) => {
+    const cartID = req.params.id;
+    const { productID, price } = req.body;
+
+    if (!cartID || !productID || !price) {
+        return res
+            .status(400)
+            .json(httpResponse.badResponse(400, "Invalid data"));
+    }
+
+    const oldCart = await Cart.findById(cartID);
+
+    const newProducts = oldCart.products.filter((p) => {
+        return p != productID;
+    });
+
+    const newPrice = oldCart.price - price;
+
+    const newCart = await Cart.findByIdAndUpdate(cartID, {
+        $set: {
+            price: newPrice,
+            products: newProducts,
+        },
+    });
+
+    const sendNewCart = await Cart.findById(cartID).populate("products");
+
+    res.status(200).json(
+        httpResponse.goodResponse(200, sendNewCart, "cart product deleted")
+    );
+});
+
+//pay
+const makePayment = asyncWrapper(async (req, res) => {
+    const { products } = req.body;
+
+    const lineItems = products.map((product) => ({
+        price_data: {
+            currency: "usd",
+            product_data: {
+                name: product.title,
+                images: [
+                    `http://localhost:4000/api/uploads/products${product.avatar}`,
+                ],
+            },
+            unit_amount: Math.round(product.price * 100),
+        },
+        quantity: 1,
+    }));
+
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items: lineItems,
+        mode: "payment",
+        success_url: "http://localhost:3000/success",
+        cancel_url: "http://localhost:3000/cancel",
+    });
+
+    res.status(200).json(
+        httpResponse.goodResponse(
+            200,
+            {
+                id: session.id,
+            },
+            "payment success"
+        )
+    );
+});
+
 module.exports = {
     allUsers,
     deleteUser,
     oneUser,
     editUser,
     createUser,
+    deleteCartProduct,
+    makePayment,
 };

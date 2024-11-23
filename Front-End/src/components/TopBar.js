@@ -18,6 +18,7 @@ export default function TopBar() {
     //cookie
     const cookie = Cookie();
     const currentUser = cookie.get("user");
+
     function handleLogout() {
         cookie.remove("Bearer");
         cookie.remove("user");

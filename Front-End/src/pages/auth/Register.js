@@ -31,9 +31,9 @@ export default function Register() {
                 email: data.email,
                 password: data.password,
             });
-            cookie.set("Bearer", user.data.token);
+            cookie.set("Bearer", user.data.data.token);
             cookie.set("user", user.data.data);
-            cookie.set("refresh", user.refreshToken);
+            cookie.set("refresh", user.data.data.refreshToken);
             nav("/home");
         } catch (err) {
             console.log(err);

@@ -10,6 +10,7 @@ const usersRouter = require("./router/usersRouter");
 const productsRouter = require("./router/productsRouter");
 const categoriesRouter = require("./router/categoriesRouter");
 const blogsRouter = require("./router/blogsRouter");
+const chatBotRouter = require("./router/chatBotRouter");
 //utils
 const httpRespone = require("./utils/httpRespone");
 
@@ -30,6 +31,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/blogs", blogsRouter);
+app.use("/api/chatbot", chatBotRouter);
 app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 
 //global middle ware for not found routes

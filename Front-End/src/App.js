@@ -24,6 +24,8 @@ import EditProduct from "./components/dashboard/edit/EditProduct.js";
 import EditCategory from "./components/dashboard/edit/EditCategory.js";
 import EditBlog from "./components/dashboard/edit/EditBlog.js";
 import Cart from "./pages/user/Cart.js";
+import SuccessPayment from "./components/SuccessPayment.js";
+import CancelPayment from "./components/dashboard/CancelPayment.js";
 
 export default function App() {
     return (
@@ -40,6 +42,8 @@ export default function App() {
                 <Route path={"/contactus"} element={<ContactUs />} />
                 <Route path={"/account"} element={<Account />} />
                 <Route path={"/cart"} element={<Cart />} />
+                <Route path={"/success"} element={<SuccessPayment />} />
+                <Route path={"/cancel"} element={<CancelPayment />} />
                 <Route element={<RequireAuth />}>
                     <Route path={"/dashboard"} element={<Dashboard />}>
                         <Route path={"users"} element={<Users />} />
